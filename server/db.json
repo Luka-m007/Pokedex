@@ -1,0 +1,12 @@
+{
+	"users": [
+		{
+			"id": 1,
+			"name": "Jan Kowalski",
+			"email": "j.kowalski@example.com",
+			"password": "password123"
+		}
+	],
+
+	"customPokemons": []
+}
