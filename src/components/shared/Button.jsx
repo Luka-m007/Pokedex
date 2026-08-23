@@ -16,6 +16,6 @@ const Btn = styled.button`
 	}
 `
 
-export const HeaderLink = ({ children, ...rest }) => {
+export const Button = ({ children, ...rest }) => {
 	return <Btn {...rest}>{children}</Btn>
 }

@@ -1,8 +1,10 @@
+import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import styled from 'styled-components'
-import { HeaderLink } from '../index'
+import { HeaderLink, RegisterModal } from '../index'
 import pokemonLogo from '../icons/pokemonLogo.png'
 
-const headerLinks = ['Ulubione', 'Arena', 'Ranking', 'Edycja', 'Wyloguj']
+// const headerLinks = ['Ulubione', 'Arena', 'Ranking', 'Edycja']
 
 const HeaderWrapper = styled.div`
 	display: flex;
@@ -22,14 +24,24 @@ const Img = styled.img`
 	cursor: pointer;
 `
 export const HeaderContent = () => {
+	const [register, setRegister] = useState(false)
+
+	const modal = createPortal(<RegisterModal onClose={() => setRegister(false)} />, document.body)
+
+	const handleRegisterClick = () => {
+		setRegister(!register)
+	}
+
 	return (
 		<HeaderWrapper>
 			<Img src={pokemonLogo} alt='Pokemon Logo'></Img>
 			<HeaderLinkWrapper>
-				{headerLinks.map(link => (
+				{/* {headerLinks.map(link => (
 					<HeaderLink key={link}>{link}</HeaderLink>
-				))}
+				))} */}
+				<HeaderLink onClick={handleRegisterClick}>Rejestracja</HeaderLink>
 			</HeaderLinkWrapper>
+			{register && modal}
 		</HeaderWrapper>
 	)
 }

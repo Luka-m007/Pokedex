@@ -1,4 +1,4 @@
-import { useFetchData, PokemonCard, PaginationCustom, GlobalSearch } from '../../index'
+import { useFetchData, PokemonCard, PaginationCustom, GlobalSearch, Notification } from '../../index'
 import styled from 'styled-components'
 
 const HomeWrapper = styled.div`
@@ -15,8 +15,17 @@ export const Home = () => {
 	return (
 		<>
 			<GlobalSearch value={searchInput} onChange={handleSearchInputChange} />
-			{isLoading && <p>Loading...</p>}
-			{error && <p>Error occurred!</p>}
+			{/* {isLoading && <p>Loading...</p>} */}
+			{isLoading && (
+				<Notification variant='info' autoHideDuration={400}>
+					Loading data...
+				</Notification>
+			)}
+			{error && (
+				<Notification variant='error' autoHideDuration={3000}>
+					Błąd podczas pobierania danych. Sprawdź połączenie z internetem lub spróbuj ponownie później.
+				</Notification>
+			)}
 			{paginatedData && (
 				<HomeWrapper>
 					{paginatedData.map(pokemon => (

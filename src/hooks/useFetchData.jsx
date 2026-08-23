@@ -11,8 +11,8 @@ export const useFetchData = () => {
 	const [page, setPage] = useState(1)
 	const [searchInput, setSearchInput] = useState('')
 
-	console.log('data', data)
-	console.log('searchInput', searchInput)
+	// console.log('data', data)
+	// console.log('searchInput', searchInput)
 
 	useEffect(() => {
 		const fetchData = async () => {

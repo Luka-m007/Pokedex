@@ -1,10 +1,13 @@
 import { HeaderContent, Home } from './index'
+import { SnackbarProvider } from 'notistack'
 
 export function App() {
 	return (
 		<>
-			<HeaderContent />
-			<Home />
+			<SnackbarProvider maxSnack={1} preventDuplicate>
+				<HeaderContent />
+				<Home />
+			</SnackbarProvider>
 		</>
 	)
 }
