@@ -1,2 +1,7 @@
 export * from './components/HeaderContent'
 export * from './components/shared/HeaderLink'
+export * from './hooks/useFetchData'
+export * from './components/subpages/Home'
+export * from './components/shared/PokemonCard'
+export * from './services/PaginationCustom'
+export * from './components/shared/GlobalSearch'

@@ -9,16 +9,16 @@ const HeaderWrapper = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	background-color: #202020;
-	padding: 30px 20px;
+	padding: 3rem 2rem;
 `
 
 const HeaderLinkWrapper = styled.div`
 	display: flex;
-	gap: 10px;
+	gap: 1rem;
 `
 
 const Img = styled.img`
-	width: 150px;
+	width: 15rem;
 	cursor: pointer;
 `
 export const HeaderContent = () => {

@@ -8,5 +8,11 @@
 		}
 	],
 
-	"customPokemons": []
+	"customPokemons": [
+		{
+			"id": 1,
+			"height": 150,
+			"weight": 200
+		}
+	]
 }
