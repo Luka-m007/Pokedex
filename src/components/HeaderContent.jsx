@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
-import { HeaderLink, RegisterModal } from '../index'
+import { HeaderLink, RegisterModal, LoginModal } from '../index'
 import pokemonLogo from '../icons/pokemonLogo.png'
 
 // const headerLinks = ['Ulubione', 'Arena', 'Ranking', 'Edycja']
@@ -24,13 +24,11 @@ const Img = styled.img`
 	cursor: pointer;
 `
 export const HeaderContent = () => {
-	const [register, setRegister] = useState(false)
+	const [isRegisterOpen, setIsRegisterOpen] = useState(false)
+	const [isLoginOpen, setIsLoginOpen] = useState(false)
 
-	const modal = createPortal(<RegisterModal onClose={() => setRegister(false)} />, document.body)
-
-	const handleRegisterClick = () => {
-		setRegister(!register)
-	}
+	const registerModal = createPortal(<RegisterModal onClose={() => setIsRegisterOpen(false)} />, document.body)
+	const loginModal = createPortal(<LoginModal onClose={() => setIsLoginOpen(false)} />, document.body)
 
 	return (
 		<HeaderWrapper>
@@ -39,9 +37,11 @@ export const HeaderContent = () => {
 				{/* {headerLinks.map(link => (
 					<HeaderLink key={link}>{link}</HeaderLink>
 				))} */}
-				<HeaderLink onClick={handleRegisterClick}>Rejestracja</HeaderLink>
+				<HeaderLink onClick={() => setIsLoginOpen(true)}>Login</HeaderLink>
+				<HeaderLink onClick={() => setIsRegisterOpen(true)}>Rejestracja</HeaderLink>
 			</HeaderLinkWrapper>
-			{register && modal}
+			{isRegisterOpen && registerModal}
+			{isLoginOpen && loginModal}
 		</HeaderWrapper>
 	)
 }

@@ -47,7 +47,7 @@ const schema = z
 	})
 
 export const RegistrationForm = ({ onSubmitted }) => {
-	const { setRegisterUser, error, success } = useRegisterHook()
+	const { registerUser, error, success } = useRegisterHook()
 
 	const {
 		register,
@@ -58,8 +58,12 @@ export const RegistrationForm = ({ onSubmitted }) => {
 		defaultValues,
 	})
 
-	const onSubmit = data => {
-		setRegisterUser(data)
+	const onSubmit = async data => {
+		try {
+			await registerUser(data)
+		} catch (error) {
+			console.error('Błąd rejestracji:', error)
+		}
 	}
 
 	useEffect(() => {
