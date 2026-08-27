@@ -1,7 +1,7 @@
-import closeIcon from '../../icons/bx-x.svg'
+import { XIcon } from '../../icons/XIcon'
 import styled from 'styled-components'
 
-const CloseIcon = styled.img`
+const CloseIcon = styled(XIcon)`
 	position: absolute;
 	top: 1.2rem;
 	left: 1.2rem;
@@ -15,5 +15,5 @@ const CloseIcon = styled.img`
 `
 
 export const CloseWindow = ({ onClick }) => {
-	return <CloseIcon src={closeIcon} alt='Close' onClick={onClick} />
+	return <CloseIcon onClick={onClick} />
 }
