@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
-import { HeaderLink, RegisterModal, LoginModal, LoginContext } from '../index'
+import { HeaderLink, RegisterModal, LoginModal, LoginContext, ThemeSwitch, useThemeMode, UserLogined } from '../index'
 import pokemonLogo from '../icons/pokemonLogo.png'
 
 const headerLinks = ['Ulubione', 'Arena', 'Ranking', 'Edycja']
@@ -27,6 +27,7 @@ export const HeaderContent = () => {
 	const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
 	const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
+	const { isDark, setIsDark } = useThemeMode()
 
 	const registerModal = createPortal(<RegisterModal onClose={() => setIsRegisterOpen(false)} />, document.body)
 	const loginModal = createPortal(<LoginModal onClose={() => setIsLoginOpen(false)} />, document.body)
@@ -37,17 +38,21 @@ export const HeaderContent = () => {
 	}
 
 	return (
-		<HeaderWrapper>
-			<Img src={pokemonLogo} alt='Pokemon Logo'></Img>
-			<HeaderLinkWrapper>
-				{isLoggedIn && headerLinks.map(link => <HeaderLink key={link}>{link}</HeaderLink>)}
-				<HeaderLink onClick={isLoggedIn ? handleLogout : () => setIsLoginOpen(true)}>
-					{isLoggedIn ? 'Wyloguj' : 'Logowanie'}
-				</HeaderLink>
-				{!isLoggedIn && <HeaderLink onClick={() => setIsRegisterOpen(true)}>Rejestracja</HeaderLink>}
-			</HeaderLinkWrapper>
-			{isRegisterOpen && registerModal}
-			{isLoginOpen && loginModal}
-		</HeaderWrapper>
+		<>
+			<HeaderWrapper>
+				<Img src={pokemonLogo} alt='Pokemon Logo'></Img>
+				<HeaderLinkWrapper>
+					{isLoggedIn && headerLinks.map(link => <HeaderLink key={link}>{link}</HeaderLink>)}
+					<HeaderLink onClick={isLoggedIn ? handleLogout : () => setIsLoginOpen(true)}>
+						{isLoggedIn ? 'Wyloguj' : 'Logowanie'}
+					</HeaderLink>
+					{!isLoggedIn && <HeaderLink onClick={() => setIsRegisterOpen(true)}>Rejestracja</HeaderLink>}
+				</HeaderLinkWrapper>
+				{isRegisterOpen && registerModal}
+				{isLoginOpen && loginModal}
+				<UserLogined  />
+				<ThemeSwitch onClick={() => setIsDark(!isDark)} isDark={isDark} />
+			</HeaderWrapper>
+		</>
 	)
 }
