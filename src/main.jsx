@@ -17,7 +17,7 @@ const router = createBrowserRouter([
 			},
 			{
 				element: <PokemonDetails />,
-				path: ROUTES.pokemonDetails,
+				path: ROUTES.pokemonDetails(':id'),
 			},
 			{
 				element: <Arena />,
@@ -42,7 +42,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
 	<StrictMode>
 		<ThemeProviderWrapper>
-			{/* <App /> */}
 			<RouterProvider router={router} />
 		</ThemeProviderWrapper>
 	</StrictMode>,

@@ -1,6 +1,6 @@
 export const ROUTES = {
 	home: '/',
-	pokemonDetails: '/pokemonDetails',
+	pokemonDetails: id => `/pokemonDetails/${id}`,
 	arena: '/arena',
 	edition: '/edition',
 	favorite: '/favorite',

@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { ROUTES } from '../subpages/index'
 
 const Card = styled.div`
 	width: 100%;
@@ -51,30 +53,39 @@ const Span = styled.span`
 	white-space: nowrap;
 `
 
+const LinkStyled = styled(Link)`
+	text-decoration: none;
+	color: inherit;
+`
+
 export const PokemonCard = ({ pokemon }) => {
 	return (
-		<Card>
-			<Img src={pokemon.sprites.front_default} alt={pokemon.name} />
-			<H2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</H2>
-			<StatisticsWrapper>
-				<StaticsWrapper>
-					<P>{pokemon.height}</P>
-					<Span>Height</Span>
-				</StaticsWrapper>
 
-				<StaticsWrapper>
-					<P>{pokemon.base_experience}</P>
-					<Span>Base Experience</Span>
-				</StaticsWrapper>
-				<StaticsWrapper>
-					<P>{pokemon.weight}</P>
-					<Span>Weight</Span>
-				</StaticsWrapper>
-				<StaticsWrapper>
-					<P>{pokemon.abilities.map(el => (el.is_hidden === false ? el.ability.name : ''))}</P>
-					<Span>Abilities</Span>
-				</StaticsWrapper>
-			</StatisticsWrapper>
-		</Card>
+		
+		<LinkStyled to={ROUTES.pokemonDetails(pokemon.id)}>
+			<Card>
+				<Img src={pokemon.sprites.front_default} alt={pokemon.name} />
+				<H2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</H2>
+				<StatisticsWrapper>
+					<StaticsWrapper>
+						<P>{pokemon.height}</P>
+						<Span>Height</Span>
+					</StaticsWrapper>
+
+					<StaticsWrapper>
+						<P>{pokemon.base_experience}</P>
+						<Span>Base Experience</Span>
+					</StaticsWrapper>
+					<StaticsWrapper>
+						<P>{pokemon.weight}</P>
+						<Span>Weight</Span>
+					</StaticsWrapper>
+					<StaticsWrapper>
+						<P>{pokemon.abilities.map(el => (el.is_hidden === false ? el.ability.name : ''))}</P>
+						<Span>Abilities</Span>
+					</StaticsWrapper>
+				</StatisticsWrapper>
+			</Card>
+		</LinkStyled>
 	)
 }

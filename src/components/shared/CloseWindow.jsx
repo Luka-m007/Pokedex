@@ -10,8 +10,6 @@ const CloseIcon = styled(XIcon)`
 	padding: 0.8rem;
 	box-sizing: content-box;
 	cursor: pointer;
-	border-radius: 50%;
-	transition: background-color 0.2s ease;
 `
 
 export const CloseWindow = ({ onClick }) => {

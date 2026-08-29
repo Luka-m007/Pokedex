@@ -44,7 +44,6 @@ export const useFetchData = () => {
 		})
 	}, [fetchData])
 
-
 	const handleSearchInputChange = value => {
 		setSearchInput(value)
 		setPage(1)
