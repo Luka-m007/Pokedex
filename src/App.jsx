@@ -1,6 +1,7 @@
 import { HeaderContent, Home } from './index'
 import { SnackbarProvider } from 'notistack'
 import { LoginProvider } from './context/LoginContext'
+import { Outlet } from 'react-router-dom'
 
 export function App() {
 	return (
@@ -8,7 +9,8 @@ export function App() {
 			<LoginProvider>
 				<SnackbarProvider maxSnack={1} preventDuplicate>
 					<HeaderContent />
-					<Home />
+					{/* <Home /> */}
+					<Outlet />
 				</SnackbarProvider>
 			</LoginProvider>
 		</>
