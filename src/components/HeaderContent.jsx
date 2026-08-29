@@ -26,7 +26,7 @@ const Img = styled.img`
 export const HeaderContent = () => {
 	const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
-	const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
+	const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useContext(LoginContext)
 	const { isDark, setIsDark } = useThemeMode()
 
 	const registerModal = createPortal(<RegisterModal onClose={() => setIsRegisterOpen(false)} />, document.body)
@@ -35,6 +35,7 @@ export const HeaderContent = () => {
 	const handleLogout = () => {
 		setIsLoggedIn(false)
 		setIsLoginOpen(false)
+		setUserName('')
 	}
 
 	return (
@@ -50,7 +51,7 @@ export const HeaderContent = () => {
 				</HeaderLinkWrapper>
 				{isRegisterOpen && registerModal}
 				{isLoginOpen && loginModal}
-				<UserLogined  />
+				{isLoggedIn && <UserLogined userName={userName} />}
 				<ThemeSwitch onClick={() => setIsDark(!isDark)} isDark={isDark} />
 			</HeaderWrapper>
 		</>

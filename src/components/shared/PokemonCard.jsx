@@ -48,6 +48,7 @@ const P = styled.p`
 const Span = styled.span`
 	font-size: 1.4rem;
 	font-weight: bold;
+	white-space: nowrap;
 `
 
 export const PokemonCard = ({ pokemon }) => {

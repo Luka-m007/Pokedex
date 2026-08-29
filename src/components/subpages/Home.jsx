@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const HomeWrapper = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+	align-items: start;
 	width: 100%;
 	gap: 2rem;
 	padding: 2rem;

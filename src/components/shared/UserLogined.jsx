@@ -8,14 +8,15 @@ const UserLoginedWrapper = styled.div`
 `
 
 const UserIconStyled = styled(UserIcon)`
+	color: #fff;
 	width: 2rem;
 	height: 2rem;
 	margin-right: 0.5rem;
 `
 
 const UserName = styled.span`
-	font-size: 1.2rem;
-	font-weight: bold;
+	color: #fff;
+	font-size: 1.3rem;
 `
 
 export const UserLogined = ({ userName }) => {
