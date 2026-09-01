@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { usePokemonDetails, useAddToFavorite } from '../../hooks/index'
+import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import { FavoritePokemonBtn } from '../../index'
+import { FavoritePokemonBtn, LoginContext, Notification } from '../../index'
+import { PokemonCard, Img, InfoWrapper, StatisticsWrapper, StaticsWrapper, H2, P, Span } from '../shared/PokemonCard'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -14,71 +16,53 @@ const Wrapper = styled.div`
 	min-height: 100vh;
 `
 
-const InfoWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 3rem;
-	/* padding: 3rem 10rem; */
-`
-
-const Card = styled.div`
+const BigCard = styled(PokemonCard)`
 	position: relative;
-	width: 100%;
-	/* max-width: 30rem; */
-	display: flex;
-	align-items: center;
 	justify-content: center;
-	background: linear-gradient(to bottom, #fbfafa, #e0e0e0);
 	gap: 5rem;
-	border-radius: 1rem;
-	padding: 2rem 1rem;
-`
+	flex-direction: row;
 
-const Img = styled.img`
-	width: 30rem;
-`
+	${InfoWrapper} {
+		gap: 3rem;
+	}
 
-const StatisticsWrapper = styled.div`
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	justify-items: center;
-	gap: 5rem;
-	padding: 0 1rem;
-`
-const StaticsWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 0.7rem;
-`
-const H2 = styled.h2`
-	font-size: 4rem;
-`
+	${Img} {
+		width: 30rem;
+	}
 
-const P = styled.p`
-	font-size: 1.4rem;
-	color: #7c7c7c;
-`
+	${StatisticsWrapper} {
+		gap: 5rem;
+	}
 
-const Span = styled.span`
-	font-size: 1.7rem;
-	font-weight: bold;
-	white-space: nowrap;
+	${StaticsWrapper} {
+		gap: 0.7rem;
+	}
+
+	${H2} {
+		font-size: 4rem;
+	}
+
+	${P} {
+		font-size: 1.4rem;
+	}
+
+	${Span} {
+		font-size: 1.7rem;
+	}
 `
 
 export const PokemonDetails = () => {
 	const { id } = useParams()
-	const { pokemon, isLoading, error } = usePokemonDetails(id)
-	const { addToFavorite } = useAddToFavorite()
+	const { pokemon, error } = usePokemonDetails(id)
+	const { addToFavorite, success: addToFavoriteSuccess } = useAddToFavorite()
 	const [isFavorite, setIsFavorite] = useState(false)
+	const [favoriteStatus, setFavoriteStatus] = useState(null)
+	const { isLoggedIn } = useContext(LoginContext)
 
-	useEffect(() => {
-		if (pokemon) {
-			setIsFavorite(pokemon.isFavorite)
-		}
-	}, [pokemon])
+	if (pokemon && favoriteStatus === null) {
+		setIsFavorite(pokemon.isFavorite)
+		setFavoriteStatus(pokemon.isFavorite)
+	}
 
 	const handleAddToFavorite = async () => {
 		try {
@@ -89,42 +73,33 @@ export const PokemonDetails = () => {
 		}
 	}
 
-	if (isLoading) {
-		return <div>Loading...</div>
+	if (!pokemon && !error) {
+		return (
+			<Notification variant='info' autoHideDuration={400}>
+				Loading ...
+			</Notification>
+		)
 	}
 
-	if (error || !pokemon) {
-		return <div>Error</div>
+	if (error) {
+		return (
+			<Notification variant='error' autoHideDuration={400}>
+				Error while fetching data.
+			</Notification>
+		)
 	}
 
 	return (
 		<Wrapper>
-			<Card>
-				<FavoritePokemonBtn isFavorite={isFavorite} onClick={handleAddToFavorite} />
-				<Img src={pokemon.sprites.front_default} alt={pokemon.name} />
-				<InfoWrapper>
-					<H2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</H2>
-					<StatisticsWrapper>
-						<StaticsWrapper>
-							<P>{pokemon.height}</P>
-							<Span>Height</Span>
-						</StaticsWrapper>
+			{addToFavoriteSuccess && (
+				<Notification variant='info' autoHideDuration={1000}>
+					{!isFavorite ? 'Removed from favorites' : 'Added to favorites'}
+				</Notification>
+			)}
 
-						<StaticsWrapper>
-							<P>{pokemon.base_experience}</P>
-							<Span>Base Experience</Span>
-						</StaticsWrapper>
-						<StaticsWrapper>
-							<P>{pokemon.weight}</P>
-							<Span>Weight</Span>
-						</StaticsWrapper>
-						<StaticsWrapper>
-							<P>{pokemon.abilities.map(el => (el.is_hidden === false ? el.ability.name : ''))}</P>
-							<Span>Abilities</Span>
-						</StaticsWrapper>
-					</StatisticsWrapper>
-				</InfoWrapper>
-			</Card>
+			<BigCard pokemon={pokemon}>
+				{isLoggedIn && <FavoritePokemonBtn isFavorite={isFavorite} onClick={handleAddToFavorite} />}
+			</BigCard>
 		</Wrapper>
 	)
 }

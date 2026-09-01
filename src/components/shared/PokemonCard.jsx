@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { ROUTES } from '../subpages/index'
+// import { Link } from 'react-router-dom'
+// import { ROUTES } from '../subpages/index'
 
-const Card = styled.div`
+export const Card = styled.div`
 	width: 100%;
 	/* max-width: 30rem; */
 	display: flex;
@@ -12,19 +12,13 @@ const Card = styled.div`
 	border-radius: 1rem;
 	gap: 1rem;
 	padding: 2rem 1rem;
-	transition: transform 0.3s ease-in-out;
-	cursor: pointer;
-
-	&:hover {
-		transform: scale(1.05);
-	}
 `
 
-const Img = styled.img`
+export const Img = styled.img`
 	width: 20rem;
 `
 
-const StatisticsWrapper = styled.div`
+export const StatisticsWrapper = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	justify-items: center;
@@ -32,39 +26,47 @@ const StatisticsWrapper = styled.div`
 	/* column-gap: 20px; */
 	padding: 0 1rem;
 `
-const StaticsWrapper = styled.div`
+export const StaticsWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5rem;
 `
-const H2 = styled.h2`
+export const H2 = styled.h2`
 	font-size: 2rem;
 `
 
-const P = styled.p`
+export const P = styled.p`
 	font-size: 1rem;
 	color: #7c7c7c;
 `
 
-const Span = styled.span`
+export const Span = styled.span`
 	font-size: 1.4rem;
 	font-weight: bold;
 	white-space: nowrap;
 `
 
-const LinkStyled = styled(Link)`
-	text-decoration: none;
-	color: inherit;
+export const InfoWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	/* padding: 3rem 10rem; */
 `
 
-export const PokemonCard = ({ pokemon }) => {
-	return (
+// const LinkStyled = styled(Link)`
+// 	text-decoration: none;
+// 	color: inherit;
+// `
 
-		
-		<LinkStyled to={ROUTES.pokemonDetails(pokemon.id)}>
-			<Card>
-				<Img src={pokemon.sprites.front_default} alt={pokemon.name} />
+export const PokemonCard = ({ pokemon, children, className }) => {
+	return (
+		<Card className={className}>
+			{children}
+			<Img src={pokemon.sprites.front_default} alt={pokemon.name} />
+			<InfoWrapper>
 				<H2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</H2>
 				<StatisticsWrapper>
 					<StaticsWrapper>
@@ -85,7 +87,7 @@ export const PokemonCard = ({ pokemon }) => {
 						<Span>Abilities</Span>
 					</StaticsWrapper>
 				</StatisticsWrapper>
-			</Card>
-		</LinkStyled>
+			</InfoWrapper>
+		</Card>
 	)
 }

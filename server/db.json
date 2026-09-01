@@ -21,7 +21,37 @@
       "isFavorite": true
     },
     {
-      "id": "2",
+      "id": 2,
+      "isFavorite": true
+    },
+    {
+      "id": 6,
+      "isFavorite": true
+    },
+    {
+      "id": 150,
+      "height": 1500,
+      "weight": 2000,
+      "isFavorite": true
+    },
+    {
+      "id": 4,
+      "isFavorite": true
+    },
+    {
+      "id": 8,
+      "isFavorite": true
+    },
+    {
+      "id": 5,
+      "isFavorite": true
+    },
+    {
+      "id": 3,
+      "isFavorite": false
+    },
+    {
+      "id": 7,
       "isFavorite": false
     }
   ]

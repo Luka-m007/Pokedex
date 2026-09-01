@@ -8,10 +8,12 @@ export const useAddToFavorite = () => {
 		isLoading,
 		success,
 		executeAction: addToFavorite,
-	} = useActionAsync(async (pokemonId, isFavorite) => {
-		const response = await fetch(`${BASE_URL}customPokemons/${pokemonId}`)
+	} = useActionAsync(async (id, isFavorite) => {
+		id = Number(id)
+
+		const response = await fetch(`${BASE_URL}customPokemons/${id}`)
 		if (response.ok) {
-			const patchResponse = await fetch(`${BASE_URL}customPokemons/${pokemonId}`, {
+			const patchResponse = await fetch(`${BASE_URL}customPokemons/${id}`, {
 				method: 'PATCH',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ isFavorite }),
@@ -25,7 +27,7 @@ export const useAddToFavorite = () => {
 		const postResponse = await fetch(`${BASE_URL}customPokemons`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ id: pokemonId, isFavorite }),
+			body: JSON.stringify({ id, isFavorite }),
 		})
 		if (!postResponse.ok) {
 			throw new Error('Failed to add to favorites')
