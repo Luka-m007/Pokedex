@@ -1,3 +1,8 @@
+import { useFetchData } from '../../hooks/useFetchData'
+import { PokemonInteractionCard } from '../shared/PokemonInteractionCard'
+
 export const Favorite = () => {
-	return <div>Favorite</div>
+	const { filteredData } = useFetchData({ onlyFavorites: true })
+
+	return <PokemonInteractionCard pokemons={filteredData} />
 }

@@ -33,7 +33,7 @@ const fetchPokemonData = async () => {
 	return combinedData
 }
 
-export const useFetchData = () => {
+export const useFetchData = ({ onlyFavorites = false } = {}) => {
 	const { isLoading, error, data, executeAction: fetchData } = useActionAsync(fetchPokemonData)
 	const [page, setPage] = useState(1)
 	const [searchInput, setSearchInput] = useState('')
@@ -50,7 +50,8 @@ export const useFetchData = () => {
 	}
 
 	const allData = data || []
-	const filteredData = allData.filter(pokemon => pokemon.name.toLowerCase().includes(searchInput.toLowerCase()))
+	const favoriteData = onlyFavorites ? allData.filter(pokemon => pokemon.isFavorite) : allData
+	const filteredData = favoriteData.filter(pokemon => pokemon.name.toLowerCase().includes(searchInput.toLowerCase()))
 	const totalFilteredPages = Math.ceil(filteredData.length / PAGE_SIZE)
 	const paginatedData = filteredData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
@@ -63,5 +64,6 @@ export const useFetchData = () => {
 		totalFilteredPages,
 		handleSearchInputChange,
 		searchInput,
+		filteredData,
 	}
 }

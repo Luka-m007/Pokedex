@@ -23,6 +23,8 @@ export const usePokemonDetails = id => {
 		const localResult = await localResponse.json()
 		const localPokemon = localResult.find(el => el.id === Number(id))
 
+		console.log('localPokemon', localPokemon)
+
 		if (!apiResponse.ok) {
 			if (localPokemon) return localPokemon
 
