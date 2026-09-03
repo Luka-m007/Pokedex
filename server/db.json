@@ -18,33 +18,33 @@
       "id": 1,
       "height": 150,
       "weight": 200,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": 2,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": 6,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": 150,
       "height": 1500,
       "weight": 2000,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": 4,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": 8,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": 5,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": 3,
@@ -52,6 +52,22 @@
     },
     {
       "id": 7,
+      "isFavorite": false
+    },
+    {
+      "id": 47,
+      "isFavorite": false
+    },
+    {
+      "id": 46,
+      "isFavorite": false
+    },
+    {
+      "id": 9,
+      "isFavorite": false
+    },
+    {
+      "id": 10,
       "isFavorite": false
     }
   ]

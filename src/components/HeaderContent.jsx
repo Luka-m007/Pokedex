@@ -1,10 +1,12 @@
 import { useState, useContext } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
-import { HeaderLink, RegisterModal, LoginModal, LoginContext, ThemeSwitch, useThemeMode, UserLogined } from '../index'
-import pokemonLogo from '../icons/pokemonLogo.png'
+import { LoginContext, useThemeMode } from '../context'
+import { ThemeSwitch } from '../services'
+import { HeaderLink, LoginModal, RegisterModal, UserLogined } from '../components/shared'
+import pokemonLogo from '../assets/PokemonLogo.png'
 import { Link } from 'react-router-dom'
-import { ROUTES } from './subpages/index.js'
+import { ROUTES } from './subpages'
 
 const headerLinks = [
 	{ name: 'Ulubione', path: ROUTES.favorite },

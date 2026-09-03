@@ -1,4 +1,5 @@
-import { LoginContext, useActionAsync } from '../index'
+import { useActionAsync } from '../hooks'
+import { LoginContext } from '../context'
 import { useContext } from 'react'
 
 const BASE_URL = 'http://localhost:3001/'

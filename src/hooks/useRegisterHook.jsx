@@ -1,4 +1,4 @@
-import { useActionAsync } from '../index'
+import { useActionAsync } from '../hooks'
 
 const BASE_URL = 'http://localhost:3001/'
 

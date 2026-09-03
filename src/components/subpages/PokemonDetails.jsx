@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import { usePokemonDetails, useAddToFavorite } from '../../hooks/index'
-import { useContext } from 'react'
+import { useState, useContext } from 'react'
+import { usePokemonDetails, useAddToFavorite } from '../../hooks'
 import { useParams } from 'react-router-dom'
-import { FavoritePokemonBtn, LoginContext, Notification } from '../../index'
+import { FavoritePokemonBtn } from '../shared'
+import { LoginContext } from '../../context'
+import { Notification } from '../../services'
 import { PokemonCard, Img, InfoWrapper, StatisticsWrapper, StaticsWrapper, H2, P, Span } from '../shared/PokemonCard'
 import styled from 'styled-components'
 

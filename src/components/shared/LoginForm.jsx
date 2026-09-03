@@ -2,7 +2,9 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { InputForm, Button, useLoginHook, Notification } from '../../index'
+import { Notification } from '../../services'
+import { useLoginHook } from '../../hooks'
+import { Button, InputForm } from '../shared'
 
 const loginSchema = z.object({
 	email: z.string().email({ message: 'Nieprawidłowy adres email' }),
@@ -37,7 +39,7 @@ export const LoginForm = ({ onSubmitted }) => {
 	const notificationMessage = () => {
 		if (success) {
 			return (
-				<Notification variant='success' autoHideDuration={2000}>
+				<Notification variant='success' autoHideDuration={1000}>
 					Logowanie zakończone sukcesem!
 				</Notification>
 			)
@@ -45,7 +47,7 @@ export const LoginForm = ({ onSubmitted }) => {
 
 		if (error) {
 			return (
-				<Notification variant='error' autoHideDuration={2000}>
+				<Notification variant='error' autoHideDuration={1000}>
 					Nieprawidłowy email lub hasło
 				</Notification>
 			)

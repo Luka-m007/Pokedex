@@ -1,8 +1,12 @@
-import { useActionAsync } from '../index'
+import { useActionAsync } from '../hooks'
+import { FetchDataContext } from '../context'
+import { useContext } from 'react'
 
 const BASE_URL = 'http://localhost:3001/'
 
 export const useAddToFavorite = () => {
+	const { toggleFavorite } = useContext(FetchDataContext)
+
 	const {
 		error,
 		isLoading,
@@ -21,6 +25,7 @@ export const useAddToFavorite = () => {
 			if (!patchResponse.ok) {
 				throw new Error('Failed to update favorite status')
 			}
+			toggleFavorite(id, isFavorite)
 			return
 		}
 
@@ -32,6 +37,7 @@ export const useAddToFavorite = () => {
 		if (!postResponse.ok) {
 			throw new Error('Failed to add to favorites')
 		}
+		toggleFavorite(id, isFavorite)
 	})
 
 	return { addToFavorite, isLoading, error, success }

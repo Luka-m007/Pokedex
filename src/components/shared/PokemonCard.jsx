@@ -1,10 +1,7 @@
 import styled from 'styled-components'
-// import { Link } from 'react-router-dom'
-// import { ROUTES } from '../subpages/index'
 
 export const Card = styled.div`
 	width: 100%;
-	/* max-width: 30rem; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -23,7 +20,6 @@ export const StatisticsWrapper = styled.div`
 	grid-template-columns: repeat(2, 1fr);
 	justify-items: center;
 	row-gap: 1rem;
-	/* column-gap: 20px; */
 	padding: 0 1rem;
 `
 export const StaticsWrapper = styled.div`
@@ -53,13 +49,8 @@ export const InfoWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	gap: 2rem;
-	/* padding: 3rem 10rem; */
 `
 
-// const LinkStyled = styled(Link)`
-// 	text-decoration: none;
-// 	color: inherit;
-// `
 
 export const PokemonCard = ({ pokemon, children, className }) => {
 	return (

@@ -1,5 +1,6 @@
-import { useFetchData, PaginationCustom, GlobalSearch, Notification } from '../../index'
-import { PokemonInteractionCard } from '../shared/PokemonInteractionCard'
+import { PaginationCustom, Notification } from '../../services'
+import { useFetchData } from '../../hooks'
+import { GlobalSearch, PokemonInteractionCard } from '../shared'
 
 export const Home = () => {
 	const { error, isLoading, paginatedData, page, setPage, totalFilteredPages, handleSearchInputChange, searchInput } =
@@ -7,19 +8,19 @@ export const Home = () => {
 	return (
 		<>
 			<GlobalSearch value={searchInput} onChange={handleSearchInputChange} />
-			{/* {isLoading && <p>Loading...</p>} */}
-			{isLoading && (
-				<Notification variant='info' autoHideDuration={400}>
+			{isLoading ? (
+				<Notification variant='info' closeLoading>
 					Loading data...
 				</Notification>
+			) : (
+				<PokemonInteractionCard pokemons={paginatedData} />
 			)}
 			{error && (
 				<Notification variant='error' autoHideDuration={3000}>
 					Błąd podczas pobierania danych. Sprawdź połączenie z internetem lub spróbuj ponownie później.
 				</Notification>
 			)}
-			<PokemonInteractionCard pokemons={paginatedData} />
-
+			{/* // <PokemonInteractionCard pokemons={paginatedData} /> */}
 			<PaginationCustom count={totalFilteredPages} page={page} onChange={(e, value) => setPage(value)} />
 		</>
 	)

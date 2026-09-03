@@ -1,6 +1,6 @@
-import { PokemonCard } from '../shared/PokemonCard'
+import { PokemonCard } from '../shared'
 import { Link } from 'react-router-dom'
-import { ROUTES } from '../subpages/index'
+import { ROUTES } from '../subpages'
 import styled from 'styled-components'
 
 const HomeWrapper = styled.div`

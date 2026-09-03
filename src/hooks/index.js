@@ -1,2 +1,6 @@
 export * from './usePokemonDetails'
 export * from './useAddToFavorite'
+export * from './useFetchData'
+export * from './useActionAsync'
+export * from './useLoginHook'
+export * from './useRegisterHook'

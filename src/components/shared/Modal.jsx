@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { CloseWindow, ModalTitle } from '../../index'
+import { CloseWindow, ModalTitle } from '../shared'
 
 const Backdrop = styled.div`
 	position: fixed;

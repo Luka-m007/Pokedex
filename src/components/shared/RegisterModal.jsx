@@ -1,4 +1,4 @@
-import { RegistrationForm, Modal } from '../../index'
+import { RegistrationForm, Modal } from '../shared'
 
 export const RegisterModal = ({ onClose }) => (
 	<Modal title='Rejestracja' onClose={onClose}>

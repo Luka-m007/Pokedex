@@ -3,8 +3,9 @@ import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import styled from 'styled-components'
-import { InputForm } from './InputForm'
-import { Button, useRegisterHook, Notification } from '../../index'
+import { Button, InputForm } from '../shared'
+import { useRegisterHook } from '../../hooks'
+import { Notification } from '../../services'
 
 const FormWrapper = styled.div`
 	display: flex;
