@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react'
-import { usePokemonDetails, useAddToFavorite } from '../../hooks'
+import { usePokemonDetails, useAddToFavorite, useAddToArena } from '../../hooks'
 import { useParams } from 'react-router-dom'
-import { FavoritePokemonBtn } from '../shared'
-import { LoginContext } from '../../context'
+import { FavoritePokemonBtn, ArenaPokemonBtn } from '../shared'
+import { LoginContext, FetchDataContext } from '../../context'
 import { Notification } from '../../services'
 import { PokemonCard, Img, InfoWrapper, StatisticsWrapper, StaticsWrapper, H2, P, Span } from '../shared/PokemonCard'
 import styled from 'styled-components'
@@ -56,9 +56,12 @@ export const PokemonDetails = () => {
 	const { id } = useParams()
 	const { pokemon, error } = usePokemonDetails(id)
 	const { addToFavorite, success: addToFavoriteSuccess } = useAddToFavorite()
+	const { addToArena, success: addToArenaSuccess } = useAddToArena()
+	const { isLoggedIn } = useContext(LoginContext)
+	const { arenaCount } = useContext(FetchDataContext)
 	const [isFavorite, setIsFavorite] = useState(false)
 	const [favoriteStatus, setFavoriteStatus] = useState(null)
-	const { isLoggedIn } = useContext(LoginContext)
+	const [arenaLimitCount, setArenaLimitCount] = useState(0)
 
 	if (pokemon && favoriteStatus === null) {
 		setIsFavorite(pokemon.isFavorite)
@@ -71,6 +74,18 @@ export const PokemonDetails = () => {
 			setIsFavorite(!isFavorite)
 		} catch (error) {
 			console.error('Error adding to favorites:', error)
+		}
+	}
+
+	const handleAddToArena = async () => {
+		if (isArenaFull) {
+			setArenaLimitCount(prev => prev + 1)
+			return
+		}
+		try {
+			await addToArena(id, !pokemon.isOnArena)
+		} catch (error) {
+			console.error('Error adding to arena:', error)
 		}
 	}
 
@@ -90,6 +105,8 @@ export const PokemonDetails = () => {
 		)
 	}
 
+	const isArenaFull = arenaCount >= 2 && !pokemon.isOnArena
+
 	return (
 		<Wrapper>
 			{addToFavoriteSuccess && (
@@ -98,8 +115,29 @@ export const PokemonDetails = () => {
 				</Notification>
 			)}
 
+			{addToArenaSuccess && (
+				<Notification variant='info' autoHideDuration={1000}>
+					{!pokemon.isOnArena ? 'Removed from arena' : 'Added to arena'}
+				</Notification>
+			)}
+
+			{arenaLimitCount > 0 && (
+				<Notification key={arenaLimitCount} variant='warning' autoHideDuration={1000}>
+					Arena is full. You cannot add more than 2 Pokémon to the arena.
+				</Notification>
+			)}
+
 			<BigCard pokemon={pokemon}>
 				{isLoggedIn && <FavoritePokemonBtn isFavorite={isFavorite} onClick={handleAddToFavorite} />}
+				{isLoggedIn && (
+					<ArenaPokemonBtn
+						isOnArena={pokemon.isOnArena}
+						onClick={handleAddToArena}
+						isArenaFull={isArenaFull}
+						limit={2}
+						count={arenaCount}
+					/>
+				)}
 			</BigCard>
 		</Wrapper>
 	)

@@ -3,7 +3,7 @@ import { FetchDataContext } from '../context'
 
 const PAGE_SIZE = 10
 
-export const useFetchData = ({ onlyFavorites = false } = {}) => {
+export const useFetchData = ({ onlyFavorites = false, onlyArena = false } = {}) => {
 	const { data: allData, isLoading, error } = useContext(FetchDataContext)
 	const [page, setPage] = useState(1)
 	const [searchInput, setSearchInput] = useState('')
@@ -14,7 +14,8 @@ export const useFetchData = ({ onlyFavorites = false } = {}) => {
 	}
 
 	const favoriteData = onlyFavorites ? allData.filter(pokemon => pokemon.isFavorite) : allData
-	const filteredData = favoriteData.filter(pokemon => pokemon.name.toLowerCase().includes(searchInput.toLowerCase()))
+	const arenaData = onlyArena ? favoriteData.filter(pokemon => pokemon.isOnArena) : favoriteData
+	const filteredData = arenaData.filter(pokemon => pokemon.name.toLowerCase().includes(searchInput.toLowerCase()))
 	const totalFilteredPages = Math.ceil(filteredData.length / PAGE_SIZE)
 	const paginatedData = filteredData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 

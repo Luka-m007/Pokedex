@@ -13,4 +13,4 @@ export * from './PokemonInteractionCard'
 export * from './RegisterModal'
 export * from './RegistrationForm'
 export * from './UserLogined'
-
+export * from './ArenaPokemonBtn'
