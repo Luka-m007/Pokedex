@@ -14,6 +14,11 @@ const Btn = styled.button`
 	&:hover {
 		background-color: #0000ff;
 	}
+
+	&:disabled {
+		background-color: #999;
+		cursor: not-allowed;
+	}
 `
 
 export const Button = ({ children, ...rest }) => {

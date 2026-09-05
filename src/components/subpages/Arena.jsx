@@ -1,26 +1,38 @@
 import { useFetchData } from '../../hooks'
-import { PokemonInteractionCard } from '../shared'
+import { ArenaSlot, Button } from '../shared'
+import { useAddToArena } from '../../hooks'
 import styled from 'styled-components'
 
-const NoArenaText = styled.div`
-	text-align: center;
-	margin-top: 20px;
-	font-size: 3rem;
-	padding: 20px;
+const Wrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 3rem;
+	height: 100vh;
 `
 
 export const Arena = () => {
 	const { filteredData } = useFetchData({ onlyArena: true })
+	const { addToArena } = useAddToArena()
+
+	console.log(filteredData[0])
+	console.log(filteredData[1])
+
+	const handleRemoveFromArena = pokemonId => {
+		try {
+			addToArena(pokemonId, false)
+		} catch (error) {
+			console.error('Error removing from arena:', error)
+		}
+	}
 
 	return (
-		<>
-			{filteredData.length > 0 ? (
-				<PokemonInteractionCard pokemons={filteredData} />
-			) : (
-				<NoArenaText>
-					Brak pokemonów na arenie. Przejdź do strony głównej i dodaj swojego pokemona do areny.
-				</NoArenaText>
-			)}
-		</>
+		<Wrapper>
+			<ArenaSlot pokemon={filteredData[0]} onRemove={handleRemoveFromArena} />
+			<Button disabled={filteredData.length < 2} onClick={() => console.log('Fight!')}>
+				WALCZ !
+			</Button>
+			<ArenaSlot pokemon={filteredData[1]} onRemove={handleRemoveFromArena} />
+		</Wrapper>
 	)
 }
