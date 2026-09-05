@@ -21,13 +21,14 @@ const PokemonArenaSmall = styled(PokemonCard)`
 	position: relative;
 	width: 300px;
 	height: 400px;
+	opacity: ${({ $isLoser }) => ($isLoser ? 0.3 : 1)};
 `
 
-export const ArenaSlot = ({ pokemon, onRemove }) => {
+export const ArenaSlot = ({ pokemon, onRemove, isLoser }) => {
 	return (
 		<>
 			{pokemon ? (
-				<PokemonArenaSmall pokemon={pokemon}>
+				<PokemonArenaSmall pokemon={pokemon} $isLoser={isLoser} showStats={false}>
 					<CloseWindow onClick={() => onRemove(pokemon.id)} />
 				</PokemonArenaSmall>
 			) : (

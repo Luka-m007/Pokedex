@@ -127,7 +127,7 @@ export const PokemonDetails = () => {
 				</Notification>
 			)}
 
-			<BigCard pokemon={pokemon}>
+			<BigCard pokemon={pokemon} showStats={false}>
 				{isLoggedIn && <FavoritePokemonBtn isFavorite={isFavorite} onClick={handleAddToFavorite} />}
 				{isLoggedIn && (
 					<ArenaPokemonBtn

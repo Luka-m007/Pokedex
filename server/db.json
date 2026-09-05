@@ -19,67 +19,34 @@
       "height": 150,
       "weight": 200,
       "isFavorite": false,
-      "isOnArena": false
-    },
-    {
-      "id": 2,
-      "isFavorite": false,
-      "isOnArena": false
-    },
-    {
-      "id": 6,
-      "isFavorite": false,
-      "isOnArena": true
-    },
-    {
-      "id": 150,
-      "height": 1500,
-      "weight": 2000,
-      "isFavorite": false
+      "isOnArena": false,
+      "base_experience": 74,
+      "win": 1,
+      "lose": 0
     },
     {
       "id": 4,
-      "isFavorite": true,
-      "isOnArena": false
+      "isOnArena": false,
+      "lose": 1,
+      "win": 0
     },
     {
-      "id": 8,
-      "isFavorite": false
-    },
-    {
-      "id": 5,
-      "isFavorite": false
-    },
-    {
-      "id": 3,
-      "isFavorite": true,
-      "isOnArena": false
+      "id": 2,
+      "isOnArena": true,
+      "base_experience": 152,
+      "win": 1,
+      "lose": 0,
+      "isFavorite": true
     },
     {
       "id": 7,
-      "isFavorite": true,
-      "isOnArena": false
+      "isOnArena": false,
+      "lose": 1,
+      "win": 0
     },
     {
-      "id": 47,
-      "isFavorite": false
-    },
-    {
-      "id": 46,
-      "isFavorite": false
-    },
-    {
-      "id": 9,
-      "isFavorite": false,
+      "id": 8,
       "isOnArena": true
-    },
-    {
-      "id": 10,
-      "isFavorite": false
-    },
-    {
-      "id": 37,
-      "isOnArena": false
     }
   ]
 }

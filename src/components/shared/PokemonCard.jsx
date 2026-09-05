@@ -1,6 +1,8 @@
+import { WinLoseCard } from '../shared'
 import styled from 'styled-components'
 
 export const Card = styled.div`
+	position: relative;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -51,10 +53,10 @@ export const InfoWrapper = styled.div`
 	gap: 2rem;
 `
 
-
-export const PokemonCard = ({ pokemon, children, className }) => {
+export const PokemonCard = ({ pokemon, children, className, showStats = true }) => {
 	return (
 		<Card className={className}>
+			{showStats && pokemon.win !== undefined && <WinLoseCard pokemon={pokemon} />}
 			{children}
 			<Img src={pokemon.sprites.front_default} alt={pokemon.name} />
 			<InfoWrapper>

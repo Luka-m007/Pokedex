@@ -37,6 +37,7 @@ export const FetchDataContext = createContext({ data: [], isLoading: false, erro
 export const FetchDataProvider = ({ children }) => {
 	const [favoritePokemons, setFavoritePokemons] = useState({})
 	const [arenaPokemons, setArenaPokemons] = useState({})
+	const [pokemonStats, setPokemonStats] = useState({})
 
 	const { data, isLoading, error, executeAction: fetchData } = useActionAsync(fetchPokemonData)
 
@@ -54,17 +55,36 @@ export const FetchDataProvider = ({ children }) => {
 		setArenaPokemons(prev => ({ ...prev, [id]: isOnArena }))
 	}
 
+	const updatePokemonStats = (id, key, value) => {
+		setPokemonStats(prev => ({
+			...prev,
+			[id]: { ...prev[id], [key]: value },
+		}))
+	}
+
 	const mergedData = (data || []).map(pokemon => {
 		const withFavorite =
 			pokemon.id in favoritePokemons ? { ...pokemon, isFavorite: favoritePokemons[pokemon.id] } : pokemon
-		return pokemon.id in arenaPokemons ? { ...withFavorite, isOnArena: arenaPokemons[pokemon.id] } : withFavorite
+		const withArena =
+			pokemon.id in arenaPokemons ? { ...withFavorite, isOnArena: arenaPokemons[pokemon.id] } : withFavorite
+		const withStats = pokemon.id in pokemonStats ? { ...withArena, ...pokemonStats[pokemon.id] } : withArena
+		return withStats
 	})
 
 	const arenaCount = mergedData.filter(pokemon => pokemon.isOnArena).length
 
 	return (
 		<FetchDataContext.Provider
-			value={{ data: mergedData || [], isLoading, error, fetchData, toggleFavorite, toggleArena, arenaCount }}>
+			value={{
+				data: mergedData || [],
+				isLoading,
+				error,
+				fetchData,
+				toggleFavorite,
+				toggleArena,
+				arenaCount,
+				updatePokemonStats,
+			}}>
 			{children}
 		</FetchDataContext.Provider>
 	)
