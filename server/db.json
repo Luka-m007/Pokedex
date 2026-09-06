@@ -26,16 +26,17 @@
     },
     {
       "id": 4,
-      "isOnArena": false,
+      "isOnArena": true,
       "lose": 1,
-      "win": 0
+      "win": 0,
+      "isFavorite": true
     },
     {
       "id": 2,
-      "isOnArena": true,
+      "isOnArena": false,
       "base_experience": 152,
       "win": 1,
-      "lose": 0,
+      "lose": 2,
       "isFavorite": true
     },
     {
@@ -46,7 +47,37 @@
     },
     {
       "id": 8,
-      "isOnArena": true
+      "isOnArena": false,
+      "base_experience": 152,
+      "win": 1,
+      "lose": 0
+    },
+    {
+      "id": 22,
+      "isFavorite": true,
+      "isOnArena": false,
+      "base_experience": 175,
+      "win": 2,
+      "lose": 0
+    },
+    {
+      "id": 10,
+      "isOnArena": false,
+      "lose": 1,
+      "win": 0
+    },
+    {
+      "id": 5,
+      "isOnArena": false,
+      "lose": 1,
+      "win": 0
+    },
+    {
+      "id": 9,
+      "isOnArena": false,
+      "base_experience": 249,
+      "win": 1,
+      "lose": 0
     }
   ]
 }

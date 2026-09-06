@@ -24,6 +24,7 @@ export const useFightArena = () => {
 
 		updatePokemonStats(winner.id, 'base_experience', winner.base_experience + 10)
 		updatePokemonStats(winner.id, 'win', (winner.win || 0) + 1)
+		updatePokemonStats(winner.id, 'lose', winner.lose || 0)
 		updatePokemonStats(loser.id, 'lose', (loser.lose || 0) + 1)
 		updatePokemonStats(loser.id, 'win', loser.win || 0)
 

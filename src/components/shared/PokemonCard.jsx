@@ -15,6 +15,7 @@ export const Card = styled.div`
 
 export const Img = styled.img`
 	width: 20rem;
+	height: 20rem;
 `
 
 export const StatisticsWrapper = styled.div`
@@ -58,7 +59,8 @@ export const PokemonCard = ({ pokemon, children, className, showStats = true }) 
 		<Card className={className}>
 			{showStats && pokemon.win !== undefined && <WinLoseCard pokemon={pokemon} />}
 			{children}
-			<Img src={pokemon.sprites.front_default} alt={pokemon.name} />
+			{/* <Img src={pokemon.sprites.front_default} alt={pokemon.name} /> */}
+			<Img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
 			<InfoWrapper>
 				<H2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</H2>
 				<StatisticsWrapper>
