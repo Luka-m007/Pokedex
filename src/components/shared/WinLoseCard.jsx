@@ -8,7 +8,7 @@ const CardWrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: rgb(1, 1, 1);
+	background-color: ${({ theme }) => theme.header};
 	color: white;
 	padding: 1rem;
 	border-radius: 1rem 0 1rem 0;

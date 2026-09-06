@@ -4,7 +4,7 @@ const InputWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #68aeef;
+	background-color: ${({ theme }) => theme.primary};
 	padding: 3rem;
 `
 const Input = styled.input`
@@ -13,12 +13,17 @@ const Input = styled.input`
 	padding: 1rem;
 	font-size: 1.5rem;
 	border-radius: 5px;
-	border: 1px solid #787878;
+	border: 1px solid ${({ theme }) => theme.border};
 	background-color: transparent;
+	color: #fff;
+
+	&::placeholder {
+		color: rgba(255, 255, 255, 0.75);
+	}
 
 	&:focus {
 		outline: none;
-		box-shadow: 0 0 5px #68aeef;
+		box-shadow: 0 0 5px ${({ theme }) => theme.primaryHover};
 	}
 `
 

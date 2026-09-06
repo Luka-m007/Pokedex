@@ -6,8 +6,9 @@ export const Wrapper = styled.div`
 	font-weight: bold;
 `
 export const Column = styled.div`
-	border: 1px solid #ccc;
+	border: 1px solid ${({ theme }) => theme.border};
 	padding: 10px;
+	color: ${({ theme }) => theme.text};
 `
 export const RankingRow = ({ pokemon, rank, img }) => {
 	return (

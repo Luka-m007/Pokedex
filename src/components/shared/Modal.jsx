@@ -23,7 +23,8 @@ const ModalContent = styled.div`
 	border-radius: 8px;
 	max-height: 90vh;
 	overflow-y: auto;
-	background-color: #fff;
+	background-color: ${({ theme }) => theme.surface};
+	color: ${({ theme }) => theme.text};
 `
 
 export const Modal = ({ title, onClose, children }) => {

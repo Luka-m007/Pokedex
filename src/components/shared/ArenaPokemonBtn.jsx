@@ -17,7 +17,7 @@ const StyledSwordIcon = styled(SwordIcon)`
 	box-sizing: content-box;
 	cursor: pointer;
 	cursor: ${({ $isFull }) => ($isFull ? 'not-allowed' : 'pointer')};
-	color: ${({ $isFull, $isOnArena }) => ($isFull ? '#a0a0a0' : $isOnArena ? '#f80015' : '#0a0a0a')};
+	color: ${({ $isFull, $isOnArena, theme }) => ($isFull ? theme.textSecondary : $isOnArena ? theme.accent : theme.text)};
 `
 
 const CountText = styled.span`
@@ -25,7 +25,7 @@ const CountText = styled.span`
 	display: block;
 	font-size: 1.6rem;
 	font-weight: bold;
-	color: #0a0a0a;
+	color: ${({ theme }) => theme.text};
 `
 
 export const ArenaPokemonBtn = ({ onClick, isOnArena, isArenaFull, limit, count }) => {

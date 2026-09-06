@@ -10,7 +10,7 @@ const FavoriteIcon = styled(HeartIcon)`
 	padding: 0.8rem;
 	box-sizing: content-box;
 	cursor: pointer;
-	color: ${({ $isFavorite }) => ($isFavorite ? '#f80015' : '#00000')};
+	color: ${({ $isFavorite, theme }) => ($isFavorite ? theme.accent : theme.textSecondary)};
 `
 
 export const FavoritePokemonBtn = ({ onClick, isFavorite }) => {

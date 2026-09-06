@@ -16,7 +16,7 @@ const Label = styled.label`
 const Input = styled.input`
 	padding: 10px;
 	border-radius: 5px;
-	border: 1px solid #ccc;
+	border: 1px solid ${({ theme }) => theme.border};
 `
 
 export const InputForm = ({ id, label, error, ...rest }) => {

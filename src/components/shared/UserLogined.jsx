@@ -8,14 +8,14 @@ const UserLoginedWrapper = styled.div`
 `
 
 const UserIconStyled = styled(UserIcon)`
-	color: #fff;
+	color: ${({ theme }) => theme.headerText};
 	width: 2rem;
 	height: 2rem;
 	margin-right: 0.5rem;
 `
 
 const UserName = styled.span`
-	color: #fff;
+	color: ${({ theme }) => theme.headerText};
 	font-size: 1.3rem;
 `
 

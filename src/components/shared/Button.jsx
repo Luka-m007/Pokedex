@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Btn = styled.button`
-	background-color: #2727fc;
+	background-color: ${({ theme }) => theme.primary};
 	color: #fff;
 	border-radius: 5px;
 	font-size: 1.5rem;
@@ -12,7 +12,7 @@ const Btn = styled.button`
 	border: none;
 
 	&:hover {
-		background-color: #0000ff;
+		background-color: ${({ theme }) => theme.primaryHover};
 	}
 
 	&:disabled {

@@ -13,7 +13,7 @@ const PokemonImg = styled.img`
 const PlaceholderCard = styled.div`
 	width: 300px;
 	height: 400px;
-	background-color: #f0f0f0;
+	background-color: ${({ theme }) => theme.surfaceAlt};
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `

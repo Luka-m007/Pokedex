@@ -7,7 +7,8 @@ export const Card = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+	background: linear-gradient(to bottom, ${({ theme }) => theme.surface}, ${({ theme }) => theme.surfaceAlt});
+	color: ${({ theme }) => theme.text};
 	border-radius: 1rem;
 	gap: 1rem;
 	padding: 2rem 1rem;
@@ -37,7 +38,7 @@ export const H2 = styled.h2`
 
 export const P = styled.p`
 	font-size: 1rem;
-	color: #7c7c7c;
+	color: ${({ theme }) => theme.textSecondary};
 `
 
 export const Span = styled.span`

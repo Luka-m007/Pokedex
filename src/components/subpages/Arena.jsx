@@ -20,10 +20,10 @@ const ResultWrapper = styled.div`
 	align-items: center;
 	transform: translate(-50%, -50%);
 	padding: 5rem 10rem;
-	background-color: rgb(160, 160, 160);
+	background-color: ${({ theme }) => theme.surfaceAlt};
 	font-size: 3rem;
 	font-weight: bold;
-	color: #333;
+	color: ${({ theme }) => theme.text};
 	border-radius: 10px;
 `
 

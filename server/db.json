@@ -33,7 +33,7 @@
     },
     {
       "id": 2,
-      "isOnArena": false,
+      "isOnArena": true,
       "base_experience": 152,
       "win": 1,
       "lose": 2,

@@ -20,7 +20,8 @@ const HeaderWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background-color: #202020;
+	background-color: ${({ theme }) => theme.header};
+	color: ${({ theme }) => theme.headerText};
 	padding: 0 1.5rem 2rem;
 `
 
