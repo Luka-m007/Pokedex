@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react'
 import { createPortal } from 'react-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { LoginContext, useThemeMode } from '../context'
 import { ThemeSwitch } from '../services'
@@ -54,7 +55,11 @@ export const HeaderContent = () => {
 	const registerModal = createPortal(<RegisterModal onClose={() => setIsRegisterOpen(false)} />, document.body)
 	const loginModal = createPortal(<LoginModal onClose={() => setIsLoginOpen(false)} />, document.body)
 
+	const navigate = useNavigate()
+
 	const handleLogout = () => {
+		navigate('/')
+
 		setIsLoggedIn(false)
 		setIsLoginOpen(false)
 		setUserName('')
