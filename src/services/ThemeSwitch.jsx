@@ -7,10 +7,19 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 	width: 62,
 	height: 34,
 	padding: 7,
+
+	'@media (max-width: 768px)': {
+		width: 50,
+		height: 28,
+		padding: 5,
+	},
 	'& .MuiSwitch-switchBase': {
 		margin: 1,
+		'@media (max-width: 768px)': {
+			margin: 0.5,
+		},
 		padding: 0,
-		transform: 'translateX(6px)',
+		transform: 'translateX(4px)',
 		'&.Mui-checked': {
 			color: '#fff',
 			transform: 'translateX(22px)',
@@ -32,6 +41,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 		backgroundColor: '#001e3c',
 		width: 32,
 		height: 32,
+
+		'@media (max-width: 768px)': {
+			width: 24,
+			height: 24,
+		},
 		'&::before': {
 			content: "''",
 			position: 'absolute',
@@ -63,9 +77,15 @@ export function ThemeSwitch({ onClick, isDark }) {
 	return (
 		<FormGroup>
 			<FormControlLabel
-				control={<MaterialUISwitch checked={isDark} sx={{ m: 1 }} onClick={onClick} />}
+				control={<MaterialUISwitch checked={isDark} onClick={onClick} />}
 				label='Theme'
-				sx={{ '& .MuiFormControlLabel-label': { fontSize: '1.3rem' } }}
+				sx={{
+					'& .MuiFormControlLabel-label': {
+						margin: '1rem',
+						fontSize: '1.3rem',
+						'@media (max-width: 768px)': { fontSize: '1rem', margin: '0.5rem' },
+					},
+				}}
 			/>
 		</FormGroup>
 	)

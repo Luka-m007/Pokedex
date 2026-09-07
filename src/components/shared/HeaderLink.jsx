@@ -14,6 +14,18 @@ const Btn = styled.button`
 	&:hover {
 		background-color: ${({ theme }) => theme.primaryHover};
 	}
+
+	@media (max-width: 768px) {
+		width: 100%;
+		max-width: 300px;
+		font-size: 1.2rem;
+		padding: 15px 50px;
+	}
+
+	@media (min-width: 769px) and (max-width: 1024px) {
+		font-size: 1.3rem;
+		padding: 10px 25px;
+	}
 `
 
 export const HeaderLink = ({ children, ...rest }) => {

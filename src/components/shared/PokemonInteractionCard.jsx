@@ -9,6 +9,8 @@ const HomeWrapper = styled.div`
 	align-items: start;
 	width: 100%;
 	gap: 2rem;
+	max-width: 1920px;
+	margin: 0 auto;
 	padding: 2rem;
 `
 
