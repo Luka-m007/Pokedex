@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
 import { useActionAsync } from '../hooks'
+import { FetchAndMergeLocal } from '../services'
 
 const API_URL = 'https://pokeapi.co/api/v2/pokemon/'
 const LOCAL_DATA_URL = 'http://localhost:3001/'
@@ -17,19 +18,34 @@ const fetchPokemonData = async () => {
 	const apiResult = await apiResponse.json()
 	const localResult = await localResponse.json()
 
-	const detalilResult = await Promise.all(apiResult.results.map(pokemon => fetch(pokemon.url)))
+	const newPokemon = localResult.filter(localPokemon => localPokemon.id > 150)
 
-	if (detalilResult.some(response => !response.ok)) {
-		throw new Error('Network response was not ok!')
-	}
+	const apiDetails = apiResult.results.map(pokemon => pokemon.url)
+	const localDetails = newPokemon.map(pokemon => `${API_URL}${pokemon.id}`)
 
-	const details = await Promise.all(detalilResult.map(response => response.json()))
+	// const newPokemon = localResult.filter(
+	// 	localPokemon => !apiResult.results.some(pokemon => pokemon.id === localPokemon.id),
+	// )
 
-	const combinedData = details.map(pokemon => {
-		const localPokemon = localResult.find(el => el.id === pokemon.id)
-		return localPokemon ? { ...pokemon, ...localPokemon } : pokemon
-	})
-	return combinedData
+	console.log('New Pokemon:', newPokemon)
+
+	// const newPokemon = localResult.filter(
+	// 	localPokemon => !apiDetails.results.some(pokemon => pokemon.id === localPokemon.id),
+	// )
+
+	// const detalilResult = await Promise.all(apiResult.results.map(pokemon => fetch(pokemon.url)))
+
+	// if (detalilResult.some(response => !response.ok)) {
+	// 	throw new Error('Network response was not ok!')
+	// }
+
+	// const details = await Promise.all(detalilResult.map(response => response.json()))
+
+	// const combinedData = details.map(pokemon => {
+	// 	const localPokemon = localResult.find(el => el.id === pokemon.id)
+	// 	return localPokemon ? { ...pokemon, ...localPokemon } : pokemon
+	// })
+	return await FetchAndMergeLocal([...apiDetails, ...localDetails], localResult)
 }
 
 export const FetchDataContext = createContext({ data: [], isLoading: false, error: null })
