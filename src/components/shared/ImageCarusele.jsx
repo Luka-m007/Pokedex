@@ -4,16 +4,38 @@ import { useContext } from 'react'
 import { FetchDataContext } from '../../context'
 import { ArrowLeft } from '../../icons/ArrowLeft'
 import { ArrowRight } from '../../icons/ArrowRight'
+import styled from 'styled-components'
+
+const ImageWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`
+
+const Image = styled.img`
+	width: 25rem;
+	height: 25rem;
+	filter: ${props => (props.$isChosen ? 'grayscale(100%)' : 'none')};
+	opacity: ${props => (props.$isChosen ? '0.4' : '1')};
+`
+
+const ArrowButton = styled.button`
+	background: none;
+	border: none;
+	cursor: pointer;
+`
 
 export const ImageCarusele = ({ onChange }) => {
 	const [index, setIndex] = useState(0)
-	const { data, loadNextPage, loadPreviousPage, page } = useReceivingImages()
+	const { data, loadNextPage, loadPreviousPage, page, count } = useReceivingImages()
 	const { data: existingPokemon } = useContext(FetchDataContext)
 	const isStart = page === 0 && index === 0
 	const currentImage = data?.[index]
 	const isChosen = currentImage ? existingPokemon.some(pokemon => pokemon.id === currentImage.id) : false
+	const isEnd = currentImage ? currentImage.id >= count : false
 
 	const handleNextCount = () => {
+		if (isEnd) return
 		if (index === data.length - 1) {
 			setIndex(0)
 			loadNextPage()
@@ -38,10 +60,14 @@ export const ImageCarusele = ({ onChange }) => {
 	}, [currentImage, onChange, isChosen])
 
 	return (
-		<div>
-			<ArrowLeft onClick={handlePreviousCount} disabled={isStart} />
-			{currentImage && <img src={currentImage.image} alt={`Image ${currentImage.id}`} isChosen={isChosen} />}
-			<ArrowRight onClick={handleNextCount} />
-		</div>
+		<ImageWrapper>
+			<ArrowButton onClick={handlePreviousCount} disabled={isStart}>
+				<ArrowLeft />
+			</ArrowButton>
+			{currentImage && <Image src={currentImage.image} alt={`Image ${currentImage.id}`} $isChosen={isChosen} />}
+			<ArrowButton onClick={handleNextCount} disabled={isEnd}>
+				<ArrowRight />
+			</ArrowButton>
+		</ImageWrapper>
 	)
 }
