@@ -1,0 +1,7 @@
+export * from './Arena.jsx'
+export * from './Edition.jsx'
+export * from './Favorite.jsx'
+export * from './PokemonDetails.jsx'
+export * from './Ranking.jsx'
+export * from './Home.jsx'
+export * from './routes.js'

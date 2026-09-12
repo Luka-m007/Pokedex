@@ -1,0 +1,83 @@
+import { createContext, useEffect, useState } from 'react'
+import { useActionAsync } from '../hooks'
+import { FetchAndMergeLocal } from '../services'
+
+const API_URL = 'https://pokeapi.co/api/v2/pokemon/'
+const LOCAL_DATA_URL = 'http://localhost:3001/'
+
+const fetchPokemonData = async () => {
+	const [apiResponse, localResponse] = await Promise.all([
+		fetch(`${API_URL}?limit=150`),
+		fetch(`${LOCAL_DATA_URL}customPokemons`),
+	])
+
+	if (!apiResponse.ok || !localResponse.ok) {
+		throw new Error('Network response was not ok!')
+	}
+
+	const apiResult = await apiResponse.json()
+	const localResult = await localResponse.json()
+	const newPokemon = localResult.filter(localPokemon => localPokemon.id > 150)
+	const apiDetails = apiResult.results.map(pokemon => pokemon.url)
+	const localDetails = newPokemon.map(pokemon => `${API_URL}${pokemon.id}`)
+	
+	return await FetchAndMergeLocal([...apiDetails, ...localDetails], localResult)
+}
+
+export const FetchDataContext = createContext({ data: [], isLoading: false, error: null })
+
+export const FetchDataProvider = ({ children }) => {
+	const [favoritePokemons, setFavoritePokemons] = useState({})
+	const [arenaPokemons, setArenaPokemons] = useState({})
+	const [pokemonStats, setPokemonStats] = useState({})
+
+	const { data, isLoading, error, executeAction: fetchData } = useActionAsync(fetchPokemonData)
+
+	useEffect(() => {
+		fetchData().catch(err => {
+			console.error('Error fetching data:', err)
+		})
+	}, [fetchData])
+
+	const toggleFavorite = (id, isFavorite) => {
+		setFavoritePokemons(prev => ({ ...prev, [id]: isFavorite }))
+	}
+
+	const toggleArena = (id, isOnArena) => {
+		setArenaPokemons(prev => ({ ...prev, [id]: isOnArena }))
+	}
+
+	const updatePokemonStats = (id, key, value) => {
+		setPokemonStats(prev => ({
+			...prev,
+			[id]: { ...prev[id], [key]: value },
+		}))
+	}
+
+	const mergedData = (data || []).map(pokemon => {
+		const withFavorite =
+			pokemon.id in favoritePokemons ? { ...pokemon, isFavorite: favoritePokemons[pokemon.id] } : pokemon
+		const withArena =
+			pokemon.id in arenaPokemons ? { ...withFavorite, isOnArena: arenaPokemons[pokemon.id] } : withFavorite
+		const withStats = pokemon.id in pokemonStats ? { ...withArena, ...pokemonStats[pokemon.id] } : withArena
+		return withStats
+	})
+
+	const arenaCount = mergedData.filter(pokemon => pokemon.isOnArena).length
+
+	return (
+		<FetchDataContext.Provider
+			value={{
+				data: mergedData || [],
+				isLoading,
+				error,
+				fetchData,
+				toggleFavorite,
+				toggleArena,
+				arenaCount,
+				updatePokemonStats,
+			}}>
+			{children}
+		</FetchDataContext.Provider>
+	)
+}
