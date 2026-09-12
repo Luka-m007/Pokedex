@@ -1,23 +1,17 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { NewEditPokemonModal, Button } from '../shared'
+import { ImgContainer, Column, Wrapper, HeaderColumn, Img, TableHead } from '../../services/tableStyles'
 import { useFetchData } from '../../hooks'
 import styled from 'styled-components'
 
-const tableHeaders = ['Lp.', 'Name', 'Image', 'Actions']
+const tableHeaders = ['Lp.', 'Name', 'Actions']
 
 const RankingWrapper = styled.div`
 	padding: 20px;
 `
-const Wrapper = styled.div`
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	font-weight: bold;
-`
-const Column = styled.div`
-	border: 1px solid ${({ theme }) => theme.border};
-	padding: 10px;
-	color: ${({ theme }) => theme.text};
+const EditionWrapper = styled(Wrapper)`
+	grid-template-columns: repeat(3, 1fr);
 `
 
 export const Edition = () => {
@@ -29,8 +23,6 @@ export const Edition = () => {
 		<NewEditPokemonModal onClose={() => setIsModalOpen(false)} pokemon={selectedPokemon} />,
 		document.body,
 	)
-
-	// console.log('Filtered Data:', filteredData)
 
 	return (
 		<>
@@ -44,18 +36,22 @@ export const Edition = () => {
 			{isModalOpen && NewEditPokemonModall}
 
 			<RankingWrapper>
-				<Wrapper>
-					{tableHeaders.map((header, index) => (
-						<Column key={index}>{header}</Column>
-					))}
-				</Wrapper>
+				<TableHead>
+					<EditionWrapper>
+						{tableHeaders.map((header, index) => (
+							<HeaderColumn key={index}>{header}</HeaderColumn>
+						))}
+					</EditionWrapper>
+				</TableHead>
+				
 				{filteredData?.map((pokemon, index) => (
-					<Wrapper key={pokemon.id}>
-						<Column key={index}>{index + 1}</Column>
-						<Column key={`name-${index}`}>{pokemon.name}</Column>
-						<Column key={`image-${index}`}>
-							<img src={pokemon.sprites?.front_default} alt={`Pokemon ${pokemon.id}`} />
+					<EditionWrapper key={pokemon.id}>
+						<Column data-label='Lp.'>
+							<ImgContainer>
+								{index + 1} <Img src={pokemon.sprites?.front_default} alt={`Pokemon ${pokemon.id}`} />
+							</ImgContainer>
 						</Column>
+						<Column key={`name-${index}`}>{pokemon.name}</Column>
 						<Column key={`actions-${index}`}>
 							<Button
 								onClick={() => {
@@ -65,7 +61,7 @@ export const Edition = () => {
 								Edytuj
 							</Button>
 						</Column>
-					</Wrapper>
+					</EditionWrapper>
 				))}
 			</RankingWrapper>
 		</>

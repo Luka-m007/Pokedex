@@ -4,15 +4,14 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
 	position: absolute;
 	top: 1.2rem;
-	left: 5.2rem;
+	right: 6rem;
 	display: flex;
 	align-items: center;
-	gap: 0.5rem;
 `
 
 const StyledSwordIcon = styled(SwordIcon)`
-	width: 2.4rem;
-	height: 2.4rem;
+	width: 2.7rem;
+	height: 2.7rem;
 	padding: 0.8rem;
 	box-sizing: content-box;
 	cursor: pointer;
@@ -23,7 +22,7 @@ const StyledSwordIcon = styled(SwordIcon)`
 const CountText = styled.span`
 	position: relative;
 	display: block;
-	font-size: 1.6rem;
+	font-size: 1.8rem;
 	font-weight: bold;
 	color: ${({ theme }) => theme.text};
 `

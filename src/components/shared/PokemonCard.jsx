@@ -11,20 +11,25 @@ export const Card = styled.div`
 	color: ${({ theme }) => theme.text};
 	border-radius: 1rem;
 	gap: 1rem;
-	padding: 2rem 1rem;
+	padding: 5rem 1rem;
 `
 
 export const Img = styled.img`
 	width: 20rem;
-	height: 20rem;
+	height: 30rem;
 `
 
 export const StatisticsWrapper = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	justify-items: center;
-	row-gap: 1rem;
+	row-gap: 1.4rem;
+	column-gap: 10rem;
 	padding: 0 1rem;
+
+	@media (max-width: 768px) {
+		column-gap: 2rem;
+	}
 `
 export const StaticsWrapper = styled.div`
 	display: flex;
@@ -33,18 +38,30 @@ export const StaticsWrapper = styled.div`
 	gap: 0.5rem;
 `
 export const H2 = styled.h2`
-	font-size: 2rem;
+	font-size: 2.7rem;
+
+	@media (max-width: 768px) {
+		font-size: 2.4rem;
+	}
 `
 
 export const P = styled.p`
-	font-size: 1rem;
+	font-size: 1.4rem;
 	color: ${({ theme }) => theme.textSecondary};
+
+	@media (max-width: 768px) {
+		font-size: 1.2rem;
+	}
 `
 
 export const Span = styled.span`
-	font-size: 1.4rem;
+	font-size: 1.7rem;
 	font-weight: bold;
 	white-space: nowrap;
+
+	@media (max-width: 768px) {
+		font-size: 1.5rem;
+	}
 `
 
 export const InfoWrapper = styled.div`

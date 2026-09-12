@@ -22,7 +22,7 @@
       "isOnArena": false,
       "base_experience": 74,
       "win": 1,
-      "lose": 0,
+      "lose": 2,
       "name": "bulbasaur"
     },
     {
@@ -35,8 +35,8 @@
     {
       "id": 2,
       "isOnArena": false,
-      "base_experience": 162,
-      "win": 2,
+      "base_experience": 172,
+      "win": 3,
       "lose": 2,
       "isFavorite": true
     },
@@ -59,11 +59,11 @@
       "isOnArena": false,
       "base_experience": 175,
       "win": 2,
-      "lose": 0
+      "lose": 1
     },
     {
       "id": 10,
-      "isOnArena": false,
+      "isOnArena": true,
       "lose": 1,
       "win": 0
     },
@@ -71,11 +71,12 @@
       "id": 5,
       "isOnArena": false,
       "lose": 1,
-      "win": 0
+      "win": 1,
+      "base_experience": 152
     },
     {
       "id": 9,
-      "isOnArena": false,
+      "isOnArena": true,
       "base_experience": 249,
       "win": 1,
       "lose": 0
@@ -86,6 +87,21 @@
       "height": 13,
       "weight": 12,
       "base_experience": 11
+    },
+    {
+      "id": 40,
+      "isOnArena": false
+    },
+    {
+      "id": 6,
+      "isOnArena": false,
+      "base_experience": 250,
+      "win": 1,
+      "lose": 0
+    },
+    {
+      "id": 49,
+      "isFavorite": true
     }
   ]
 }

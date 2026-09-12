@@ -4,9 +4,9 @@ import styled from 'styled-components'
 const FavoriteIcon = styled(HeartIcon)`
 	position: absolute;
 	top: 1.2rem;
-	left: 1.2rem;
-	width: 2.4rem;
-	height: 2.4rem;
+	right: 1.2rem;
+	width: 2.7rem;
+	height: 2.7rem;
 	padding: 0.8rem;
 	box-sizing: content-box;
 	cursor: pointer;

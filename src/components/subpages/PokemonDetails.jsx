@@ -15,13 +15,33 @@ const Wrapper = styled.div`
 	gap: 1rem;
 	padding: 3rem 10rem;
 	min-height: 100vh;
+	@media (max-width: 768px) {
+		padding: 2rem;
+	}
+
+	@media (min-width: 769px) and (max-width: 1024px) {
+		padding: 2.5rem 5rem;
+	}
+
+
 `
 
 const BigCard = styled(PokemonCard)`
 	position: relative;
 	justify-content: center;
-	gap: 5rem;
+	gap: 25rem;
 	flex-direction: row;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		gap: 5rem;
+		padding: 2rem;
+	}
+
+	@media (min-width: 769px) and (max-width: 1024px) {
+		gap: 10rem;
+		padding: 2.5rem 5rem;
+	}
 
 	${InfoWrapper} {
 		gap: 3rem;
@@ -29,6 +49,10 @@ const BigCard = styled(PokemonCard)`
 
 	${Img} {
 		width: 30rem;
+
+		@media (max-width: 768px) {
+			width: 100%;
+		}
 	}
 
 	${StatisticsWrapper} {
@@ -41,14 +65,38 @@ const BigCard = styled(PokemonCard)`
 
 	${H2} {
 		font-size: 4rem;
+
+		@media (max-width: 768px) {
+			font-size: 3rem;
+		}
+
+		@media (min-width: 769px) and (max-width: 1024px) {
+			font-size: 3.5rem;
+		}
 	}
 
 	${P} {
 		font-size: 1.4rem;
+
+		@media (max-width: 768px) {
+			font-size: 1.2rem;
+		}
+
+		@media (min-width: 769px) and (max-width: 1024px) {
+			font-size: 1.3rem;
+		}
 	}
 
 	${Span} {
 		font-size: 1.7rem;
+
+		@media (max-width: 768px) {
+			font-size: 1.5rem;
+		}
+
+		@media (min-width: 769px) and (max-width: 1024px) {
+			font-size: 1.6rem;
+		}
 	}
 `
 
@@ -127,7 +175,7 @@ export const PokemonDetails = () => {
 				</Notification>
 			)}
 
-			<BigCard pokemon={pokemon} showStats={false}>
+			<BigCard pokemon={pokemon}>
 				{isLoggedIn && <FavoritePokemonBtn isFavorite={isFavorite} onClick={handleAddToFavorite} />}
 				{isLoggedIn && (
 					<ArenaPokemonBtn

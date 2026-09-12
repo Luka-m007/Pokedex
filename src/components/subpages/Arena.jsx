@@ -9,6 +9,20 @@ const Wrapper = styled.div`
 	align-items: center;
 	gap: 3rem;
 	height: 100vh;
+	padding: 4rem;
+
+	@media (max-width: 768px) {
+		height: auto;
+		flex-direction: column;
+		gap: 1.5rem;
+		padding: 1rem;
+	}
+
+	@media (min-width: 769px) and (max-width: 1024px) {
+		flex-direction: row;
+		gap: 2rem;
+		padding: 2rem;
+	}
 `
 
 const ResultWrapper = styled.div`

@@ -5,13 +5,17 @@ import styled from 'styled-components'
 
 const HomeWrapper = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
 	align-items: start;
 	width: 100%;
 	gap: 2rem;
 	max-width: 1920px;
 	margin: 0 auto;
 	padding: 2rem;
+
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+	}
 `
 
 const HoverCard = styled(PokemonCard)`

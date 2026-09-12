@@ -1,5 +1,5 @@
 import { useFetchData } from '../../hooks'
-import { RankingRow, Column, Wrapper } from '../shared'
+import { ImgContainer, Column, Wrapper, HeaderColumn, Img, TableHead } from '../../services/tableStyles'
 import { useState } from 'react'
 import styled from 'styled-components'
 
@@ -28,14 +28,26 @@ export const Ranking = () => {
 				<option value='win'>Wins</option>
 			</select>
 
-			<Wrapper>
-				{sortLabels.map((label, index) => (
-					<Column key={index}>{label}</Column>
-				))}
-			</Wrapper>
+			<TableHead>
+				<Wrapper>
+					{sortLabels.map((label, index) => (
+						<HeaderColumn key={index}>{label}</HeaderColumn>
+					))}
+				</Wrapper>
+			</TableHead>
 
 			{filteredAndSortedData.map((pokemon, id) => (
-				<RankingRow key={id} pokemon={pokemon} rank={id + 1} img={pokemon.sprites.front_default}></RankingRow>
+				<Wrapper key={id}>
+					<Column data-label='Lp.'>
+						<ImgContainer>
+							{id + 1} <Img src={pokemon.sprites?.front_default} alt={`Pokemon ${pokemon.id}`} />
+						</ImgContainer>
+					</Column>
+					<Column data-label='Base Experience'>{pokemon.base_experience}</Column>
+					<Column data-label='Height'>{pokemon.height}</Column>
+					<Column data-label='Weight'>{pokemon.weight}</Column>
+					<Column data-label='Wins'>{pokemon.win || 0}</Column>
+				</Wrapper>
 			))}
 		</RankingWrapper>
 	)
