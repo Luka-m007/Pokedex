@@ -7,21 +7,5 @@
 			"id": 1
 		}
 	],
-	"customPokemons": [
-		{
-			"id": 1,
-			"isFavorite": true,
-			"isOnArena": false,
-			"lose": 1,
-			"win": 0
-		},
-		{
-			"id": 150,
-			"isOnArena": false,
-			"isFavorite": true,
-			"base_experience": 316,
-			"win": 1,
-			"lose": 0
-		}
-	]
+	"customPokemons": []
 }
