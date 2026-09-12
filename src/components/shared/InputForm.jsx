@@ -8,14 +8,14 @@ const InputDiv = styled.div`
 
 const Label = styled.label`
 	display: block;
-	margin-bottom: 5px;
+	margin-bottom: 0.5rem;
 	font-weight: 300;
 	font-size: 1.5rem;
 `
 
 const Input = styled.input`
-	padding: 10px;
-	border-radius: 5px;
+	padding: 1rem;
+	border-radius: 0.8rem;
 	border: 1px solid ${({ theme }) => theme.border};
 `
 

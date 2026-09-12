@@ -16,7 +16,9 @@ export const Wrapper = styled.div`
 	}
 `
 export const Column = styled.div`
-	padding: 10px;
+	padding: 1rem;
+	font-weight: normal;
+	font-size: 1.4rem;
 	color: ${({ theme }) => theme.text};
 
 	@media (max-width: 768px) {
@@ -34,8 +36,8 @@ export const Column = styled.div`
 `
 
 export const Img = styled.img`
-	width: 50px;
-	height: 50px;
+	width: 5rem;
+	height: 5rem;
 	object-fit: cover;
 	border-radius: 50%;
 	background-color: ${({ theme }) => theme.surfaceAlt};
@@ -44,7 +46,7 @@ export const Img = styled.img`
 export const ImgContainer = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 1rem;
 `
 
 export const HeaderColumn = styled(Column)`
@@ -56,4 +58,19 @@ export const TableHead = styled.div`
 	@media (max-width: 768px) {
 		display: none;
 	}
+`
+export const RankingWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 2rem;
+	width: 100%;
+	max-width: 1920px;
+	margin: 0 auto;
+`
+export const SectionWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 `

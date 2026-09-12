@@ -63,7 +63,7 @@ export const LoginForm = ({ onSubmitted }) => {
 				type='email'
 				placeholder='Wpisz swój email'
 				{...register('email')}
-				error={errors.email?.message}
+				error={errors.email}
 			/>
 			<InputForm
 				id='password'
@@ -71,7 +71,7 @@ export const LoginForm = ({ onSubmitted }) => {
 				type='password'
 				placeholder='Wpisz swoje hasło'
 				{...register('password')}
-				error={errors.password?.message}
+				error={errors.password}
 			/>
 
 			{notificationMessage()}

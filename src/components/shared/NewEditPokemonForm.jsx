@@ -45,7 +45,7 @@ export const NewEditPokemonForm = ({ pokemon }) => {
 			fetchData()
 			return newPokemon
 		} catch (error) {
-			console.log('Error creating pokemon:', error)
+			console.error('Error creating pokemon:', error)
 		}
 	})
 	const [selectedImage, setSelectedImage] = useState(null)
@@ -72,7 +72,6 @@ export const NewEditPokemonForm = ({ pokemon }) => {
 		if (success) {
 			return (
 				<Notification variant='success' autoHideDuration={1000}>
-					{/* Pokemon został pomyślnie utworzony! */}
 					{pokemon ? `Zmieniono atrybuty ${pokemon.name}` : 'Pokemon został pomyślnie utworzony!'}
 				</Notification>
 			)
@@ -81,7 +80,6 @@ export const NewEditPokemonForm = ({ pokemon }) => {
 		if (error) {
 			return (
 				<Notification variant='error' autoHideDuration={1000}>
-					{/* Wystąpił błąd podczas tworzenia Pokemona */}
 					{pokemon
 						? `Wystąpił błąd podczas edytowania Pokemona ${pokemon.name}`
 						: 'Wystąpił błąd podczas tworzenia Pokemona'}

@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { WinLoseCard } from '../shared'
+import { LoginContext } from '../../context'
 import styled from 'styled-components'
 
 export const Card = styled.div`
@@ -9,7 +11,7 @@ export const Card = styled.div`
 	align-items: center;
 	background: linear-gradient(to bottom, ${({ theme }) => theme.surface}, ${({ theme }) => theme.surfaceAlt});
 	color: ${({ theme }) => theme.text};
-	border-radius: 1rem;
+	border-radius: 2rem;
 	gap: 1rem;
 	padding: 5rem 1rem;
 `
@@ -73,9 +75,10 @@ export const InfoWrapper = styled.div`
 `
 
 export const PokemonCard = ({ pokemon, children, className, showStats = true }) => {
+	const { isLoggedIn } = useContext(LoginContext)
 	return (
 		<Card className={className}>
-			{showStats && pokemon.win !== undefined && <WinLoseCard pokemon={pokemon} />}
+			{isLoggedIn && showStats && pokemon.win !== undefined && <WinLoseCard pokemon={pokemon} />}
 			{children}
 			<Img src={pokemon.sprites?.other?.dream_world?.front_default || pokemon.image} alt={pokemon.name} />
 			<InfoWrapper>

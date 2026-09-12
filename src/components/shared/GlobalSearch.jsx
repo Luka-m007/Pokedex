@@ -12,7 +12,7 @@ const Input = styled.input`
 	max-width: 30rem;
 	padding: 1rem;
 	font-size: 1.5rem;
-	border-radius: 5px;
+	border-radius: 0.8rem;
 	border: 1px solid ${({ theme }) => theme.border};
 	background-color: transparent;
 	color: #fff;

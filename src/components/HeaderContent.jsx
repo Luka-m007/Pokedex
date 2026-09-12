@@ -17,19 +17,6 @@ const headerLinks = [
 	{ name: 'Edycja', path: ROUTES.edition },
 ]
 
-// const HeaderWrapper = styled.div`
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: space-between;
-// 	background-color: ${({ theme }) => theme.header};
-// 	color: ${({ theme }) => theme.headerText};
-// 	padding: 0 1.5rem 2rem;
-
-// 	@media (max-width: 768px) {
-// 		padding: 2rem 1rem;
-// 	}
-// `
-
 const HeaderWrapper = styled.div`
 	background-color: ${({ theme }) => theme.header};
 	color: ${({ theme }) => theme.headerText};
@@ -116,7 +103,7 @@ const LinkMobile = styled(Link)`
 		display: flex;
 		justify-content: center;
 		width: 100%;
-		max-width: 300px;
+		max-width: 30rem;
 	}
 `
 

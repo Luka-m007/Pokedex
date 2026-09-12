@@ -14,7 +14,6 @@ const StyledSwordIcon = styled(SwordIcon)`
 	height: 2.7rem;
 	padding: 0.8rem;
 	box-sizing: content-box;
-	cursor: pointer;
 	cursor: ${({ $isFull }) => ($isFull ? 'not-allowed' : 'pointer')};
 	color: ${({ $isFull, $isOnArena, theme }) => ($isFull ? theme.textSecondary : $isOnArena ? theme.accent : theme.text)};
 `

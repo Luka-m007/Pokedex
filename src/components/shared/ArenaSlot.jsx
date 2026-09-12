@@ -1,5 +1,5 @@
 import pokemonLogo from '../../assets/pokemonLogo.png'
-import { PokemonCard, Img, StatisticsWrapper, H2 } from '../shared/PokemonCard'
+import { PokemonCard, Img, StatisticsWrapper } from '../shared/PokemonCard'
 import { CloseWindow } from '../shared'
 import styled from 'styled-components'
 
@@ -14,7 +14,7 @@ const PlaceholderCard = styled.div`
 	width: 45rem;
 	height: 50rem;
 	background-color: ${({ theme }) => theme.surfaceAlt};
-	border-radius: 10px;
+	border-radius: 2rem;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
 	@media (max-width: 768px) {

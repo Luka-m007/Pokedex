@@ -7,7 +7,7 @@ const Backdrop = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(1rem);
 	padding: 2rem;
 `
 
@@ -16,11 +16,11 @@ const ModalContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 30px;
+	gap: 3rem;
 	width: 100%;
 	max-width: 40rem;
 	padding: 5rem 3rem 3rem;
-	border-radius: 8px;
+	border-radius: 0.8rem;
 	max-height: 90vh;
 	overflow-y: auto;
 	background-color: ${({ theme }) => theme.surface};

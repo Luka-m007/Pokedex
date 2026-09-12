@@ -17,12 +17,23 @@ const Image = styled.img`
 	height: 25rem;
 	filter: ${props => (props.$isChosen ? 'grayscale(100%)' : 'none')};
 	opacity: ${props => (props.$isChosen ? '0.4' : '1')};
+
+	@media (max-width: 768px) {
+		width: 15rem;
+		height: 15rem;
+	}
 `
 
-const ArrowButton = styled.button`
-	background: none;
-	border: none;
+const StyledArrowLeft = styled(ArrowLeft)`
 	cursor: pointer;
+	width: 4rem;
+	height: 4rem;
+`
+
+const StyledArrowRight = styled(ArrowRight)`
+	cursor: pointer;
+	width: 4rem;
+	height: 4rem;
 `
 
 export const ImageCarusele = ({ onChange }) => {
@@ -61,13 +72,9 @@ export const ImageCarusele = ({ onChange }) => {
 
 	return (
 		<ImageWrapper>
-			<ArrowButton onClick={handlePreviousCount} disabled={isStart}>
-				<ArrowLeft />
-			</ArrowButton>
+			<StyledArrowLeft type='button' onClick={handlePreviousCount} disabled={isStart} />
 			{currentImage && <Image src={currentImage.image} alt={`Image ${currentImage.id}`} $isChosen={isChosen} />}
-			<ArrowButton onClick={handleNextCount} disabled={isEnd}>
-				<ArrowRight />
-			</ArrowButton>
+			<StyledArrowRight type='button' onClick={handleNextCount} disabled={isEnd} />
 		</ImageWrapper>
 	)
 }

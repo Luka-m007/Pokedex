@@ -4,9 +4,9 @@ import styled from 'styled-components'
 
 const NoFavoritesText = styled.div`
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 2rem;
 	font-size: 3rem;
-	padding: 20px;
+	padding: 2rem;
 `
 
 export const Favorite = () => {

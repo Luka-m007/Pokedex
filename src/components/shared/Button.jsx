@@ -3,10 +3,10 @@ import styled from 'styled-components'
 const Btn = styled.button`
 	background-color: ${({ theme }) => theme.primary};
 	color: #fff;
-	border-radius: 5px;
+	border-radius: 0.8rem;
 	font-size: 1.5rem;
 	text-align: center;
-	padding: 10px 40px;
+	padding: 1rem 4rem;
 	cursor: pointer;
 	text-transform: uppercase;
 	border: none;

@@ -15,6 +15,8 @@ const Wrapper = styled.div`
 	gap: 1rem;
 	padding: 3rem 10rem;
 	min-height: 100vh;
+	max-width: 1920px;
+	margin: 0 auto;
 	@media (max-width: 768px) {
 		padding: 2rem;
 	}
@@ -22,8 +24,6 @@ const Wrapper = styled.div`
 	@media (min-width: 769px) and (max-width: 1024px) {
 		padding: 2.5rem 5rem;
 	}
-
-
 `
 
 const BigCard = styled(PokemonCard)`
