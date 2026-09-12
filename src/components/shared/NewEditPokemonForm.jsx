@@ -1,4 +1,4 @@
-import { useState, useContext, use } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { FetchDataContext } from '../../context'
 import { useActionAsync } from '../../hooks'
 import { updateCustomPokemonField, Notification } from '../../services'
-import { ImageCarusele, Button, InputForm } from '../shared'
+import { ImageCarusele, Button, InputForm } from '.'
 import styled from 'styled-components'
 
 const Form = styled.form`
@@ -33,8 +33,7 @@ const schema = z.object({
 	base_experience: z.coerce.number().min(1, 'Doświadczenie bazowe jest wymagane'),
 })
 
-export const NewPokemonForm = () => {
-	const navigate = useNavigate()
+export const NewEditPokemonForm = ({ pokemon }) => {
 	const { fetchData } = useContext(FetchDataContext)
 	const {
 		executeAction: createPokemon,
@@ -44,12 +43,13 @@ export const NewPokemonForm = () => {
 		try {
 			await updateCustomPokemonField(newPokemon.id, newPokemon)
 			fetchData()
-			navigate('/')
+			return newPokemon
 		} catch (error) {
 			console.log('Error creating pokemon:', error)
 		}
 	})
 	const [selectedImage, setSelectedImage] = useState(null)
+	const navigate = useNavigate()
 
 	const {
 		register,
@@ -57,13 +57,23 @@ export const NewPokemonForm = () => {
 		formState: { errors },
 	} = useForm({
 		resolver: zodResolver(schema),
+		defaultValues: pokemon,
 	})
+
+	useEffect(() => {
+		if (!success) return
+		const timeout = setTimeout(() => {
+			navigate('/')
+		}, 1000)
+		return () => clearTimeout(timeout)
+	}, [success, navigate])
 
 	const notificationMessage = () => {
 		if (success) {
 			return (
 				<Notification variant='success' autoHideDuration={1000}>
-					Pokemon został pomyślnie utworzony!
+					{/* Pokemon został pomyślnie utworzony! */}
+					{pokemon ? `Zmieniono atrybuty ${pokemon.name}` : 'Pokemon został pomyślnie utworzony!'}
 				</Notification>
 			)
 		}
@@ -71,7 +81,10 @@ export const NewPokemonForm = () => {
 		if (error) {
 			return (
 				<Notification variant='error' autoHideDuration={1000}>
-					Wystąpił błąd podczas tworzenia Pokemona
+					{/* Wystąpił błąd podczas tworzenia Pokemona */}
+					{pokemon
+						? `Wystąpił błąd podczas edytowania Pokemona ${pokemon.name}`
+						: 'Wystąpił błąd podczas tworzenia Pokemona'}
 				</Notification>
 			)
 		}
@@ -79,13 +92,13 @@ export const NewPokemonForm = () => {
 	}
 
 	const onSubmit = async data => {
-		await createPokemon({ ...data, id: selectedImage.id })
+		await createPokemon({ ...data, id: pokemon?.id ?? selectedImage?.id })
 	}
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
 			<FormWrapper>
-				<InputForm label='Nazwa' {...register('name')} error={errors.name} />
+				{!pokemon && <InputForm label='Nazwa' {...register('name')} error={errors.name} />}
 				<InputForm label='Wzrost' type='number' {...register('height')} error={errors.height} />
 				<InputForm label='Waga' type='number' {...register('weight')} error={errors.weight} />
 				<InputForm
@@ -94,12 +107,15 @@ export const NewPokemonForm = () => {
 					{...register('base_experience')}
 					error={errors.base_experience}
 				/>
-				<ImageCarusele onChange={setSelectedImage} />
+				{!pokemon && <ImageCarusele onChange={setSelectedImage} />}
 			</FormWrapper>
 
-			<ButtonSubmit type='submit' disabled={!selectedImage}>
-				Stwórz
-			</ButtonSubmit>
+			{!pokemon && (
+				<ButtonSubmit type='submit' disabled={!selectedImage}>
+					Stwórz
+				</ButtonSubmit>
+			)}
+			{pokemon && <ButtonSubmit type='submit'>Zmień atrybuty</ButtonSubmit>}
 			{notificationMessage()}
 		</Form>
 	)
