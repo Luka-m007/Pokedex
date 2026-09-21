@@ -1,10 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { App } from './App.jsx'
-import { ThemeProviderWrapper } from './context/ThemeProviderWrapper.jsx'
+import { App } from './App'
+import { ThemeProviderWrapper } from './context/ThemeProviderWrapper'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Home, PokemonDetails, Arena, Edition, Favorite, Ranking, ROUTES } from './components/subpages/index.js'
+import { Home, PokemonDetails, Arena, Edition, Favorite, Ranking, ROUTES } from './components/subpages/index'
+import { ProtectedRoute } from './components/shared/ProtectedRoute'
 
 const router = createBrowserRouter([
 	{
@@ -20,20 +21,25 @@ const router = createBrowserRouter([
 				path: ROUTES.pokemonDetails(':id'),
 			},
 			{
-				element: <Arena />,
-				path: ROUTES.arena,
-			},
-			{
-				element: <Edition />,
-				path: ROUTES.edition,
-			},
-			{
-				element: <Favorite />,
-				path: ROUTES.favorite,
-			},
-			{
-				element: <Ranking />,
-				path: ROUTES.ranking,
+				element: <ProtectedRoute />,
+				children: [
+					{
+						element: <Arena />,
+						path: ROUTES.arena,
+					},
+					{
+						element: <Edition />,
+						path: ROUTES.edition,
+					},
+					{
+						element: <Favorite />,
+						path: ROUTES.favorite,
+					},
+					{
+						element: <Ranking />,
+						path: ROUTES.ranking,
+					},
+				],
 			},
 		],
 	},

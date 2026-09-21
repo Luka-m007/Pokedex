@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { FetchDataContext } from '../context'
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 15
 
 export const useFetchData = ({ onlyFavorites = false, onlyArena = false } = {}) => {
 	const { data: allData, isLoading, error } = useContext(FetchDataContext)
