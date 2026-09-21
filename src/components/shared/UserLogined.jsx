@@ -1,0 +1,42 @@
+import styled from 'styled-components'
+import { UserIcon } from '../../icons/UserIcon'
+
+const UserLoginedWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+`
+
+const UserIconStyled = styled(UserIcon)`
+	color: ${({ theme }) => theme.headerText};
+	width: 2rem;
+	height: 2rem;
+	margin-right: 0.5rem;
+
+	@media (max-width: 768px) {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+`
+
+const UserName = styled.span`
+	color: ${({ theme }) => theme.headerText};
+	font-size: 1.3rem;
+
+	@media (max-width: 768px) {
+		font-size: 1rem;
+	}
+`
+
+export const UserLogined = ({ userName }) => {
+	return (
+		<UserLoginedWrapper>
+			<UserIconStyled />
+			<UserName>{userName}</UserName>
+		</UserLoginedWrapper>
+	)
+}

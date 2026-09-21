@@ -1,0 +1,11 @@
+{
+	"users": [
+		{
+			"firstName": "testowy1",
+			"password": "Qwerty123$",
+			"email": "example@o2.pl",
+			"id": 1
+		}
+	],
+	"customPokemons": []
+}
